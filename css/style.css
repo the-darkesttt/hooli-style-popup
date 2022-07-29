@@ -31,23 +31,26 @@
   position: relative;
 }
 
-.popup_checkbox,
-.popup_button {
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  right: 15px;
-  top: 15px;
-}
+/* popup buttons --------------------------- */
 
 .popup_checkbox {
-  cursor: pointer;
-  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: -100px;
 }
 
-.popup_button {
-  pointer-events: none;
+.popup_checkbox:focus ~ .popup_checkbox_label {
+  background-color: rgb(161, 196, 245);
+  border-radius: 4px;
 }
+
+.popup_checkbox_label {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+/* popup ------------------------------------ */
 
 .popup {
   display: none;
@@ -56,32 +59,46 @@
   top: calc(100% + 15px);
   max-width: 350px;
   max-height: 500px;
-  overflow: scroll;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+
   border-radius: 8px;
   border: 2px solid var(--border-color);
   box-shadow: 2px 20px 33px -29px #A1AAA0;
   background-color: var(--bg-color);
   padding: 15px;
 }
+
+.popup_checkbox:checked ~ .popup {
+  display: block;
+}
+
 .popup__list,
-.popup .inner-popup_checkbox:checked ~ .inner-popup__list {
+.inner-popup_checkbox:checked ~ .inner-popup__list {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
 }
-.popup__list li,
-.popup .inner-popup_checkbox:checked ~ .inner-popup__list li {
+
+.popup__item {
   width: 33.33%;
   max-height: 140px;
   padding: 20px;
   border: 1px solid transparent;
+  border-radius: 8px;
 }
-.popup__list li:hover,
-.popup .inner-popup_checkbox:checked ~ .inner-popup__list li:hover {
-  border: 1px solid rgb(205, 213, 227);
+
+.popup__item:focus {
+  background-color: rgb(228, 242, 242);
+  outline: none;
 }
-.popup__list li a,
-.popup .inner-popup_checkbox:checked ~ .inner-popup__list li a {
+
+.popup__item:hover {
+  background-color: rgb(228, 242, 242);
+}
+
+.popup__link {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -92,18 +109,20 @@
   font-size: 12px;
   overflow-wrap: break-word;
 }
-.popup__list li a:focus,
-.popup .inner-popup_checkbox:checked ~ .inner-popup__list li a:focus {
-  outline: 3px solid rgb(161, 196, 245);
-  outline-offset: 5px;
-}
-.popup__list li img,
-.popup .inner-popup_checkbox:checked ~ .inner-popup__list li img {
+
+.popup__icon {
   width: 100%;
   margin-bottom: 10px;
 }
-.popup__list label[for=inner-popup_checkbox],
-.popup .inner-popup_checkbox:checked ~ .inner-popup__list label[for=inner-popup_checkbox] {
+
+/* inner-popup --------------------------------------------------- */
+
+.popup__inner {
+  display: block;
+  width: 100%;
+}
+
+.inner-popup_checkbox_label {
   background-color: var(--show-more);
   color: #fff;
   border: 2px solid var(--border-color);
@@ -115,28 +134,28 @@
   justify-content: center;
   margin-bottom: 15px;
 }
-.popup__list label[for=inner-popup_checkbox] img,
-.popup .inner-popup_checkbox:checked ~ .inner-popup__list label[for=inner-popup_checkbox] img {
+
+.inner-popup_checkbox_button {
   width: 20px;
 }
-.popup__list label[for=inner-popup_checkbox]:hover,
-.popup .inner-popup_checkbox:checked ~ .inner-popup__list label[for=inner-popup_checkbox]:hover {
-  background-color: #fff;
-  color: var(--show-more);
+
+.inner-popup_checkbox {
+  position: absolute;
+  left: -100px;
 }
-.popup__list .inner-popup_checkbox,
-.popup .inner-popup_checkbox:checked ~ .inner-popup__list .inner-popup_checkbox {
-  visibility: hidden;
+
+.inner-popup_checkbox:focus ~ .inner-popup_checkbox_label {
+  border: 2px solid rgb(161, 196, 245);
 }
-.popup__list .inner-popup__list,
-.popup .inner-popup_checkbox:checked ~ .inner-popup__list .inner-popup__list {
-  display: none;
-}
-.popup__list .inner-popup_checkbox:checked ~ label[for=inner-popup_checkbox] img,
-.popup .inner-popup_checkbox:checked ~ .inner-popup__list .inner-popup_checkbox:checked ~ label[for=inner-popup_checkbox] img {
+
+.inner-popup_checkbox:checked ~ .inner-popup_checkbox_label .inner-popup_checkbox_button {
   transform: rotate(180deg);
 }
 
-.popup_checkbox:checked ~ .popup {
-  display: block;
-}/*# sourceMappingURL=style.css.map */
+.inner-popup__list{
+  display: none;
+}
+
+
+
+
