@@ -35,8 +35,8 @@
 
 .popup_checkbox {
   position: absolute;
-  top: 0;
-  left: -100px;
+  top: -100vh;
+  left: -100vw;
 }
 
 .popup_checkbox:focus ~ .popup_checkbox_label {
